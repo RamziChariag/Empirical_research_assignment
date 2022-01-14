@@ -16,10 +16,10 @@ merge 1:1 Code using "Data\Derived\mortality.dta", keep(match) nogenerate
 
 
 *Regression
-gen lGDPPC=log(GDPPC)
-gen lrd=log(rd)
-gen lmortality=log(mortality)
-gen lpapers=log(yr_papers)
+generate lGDPPC=log(GDPPC)
+generate lrd=log(rd)
+generate lmortality=log(mortality)
+generate lpapers=log(yr_papers)
 
 
 *Descriptive Statistics
@@ -28,7 +28,7 @@ asdoc summarize mortality lrd lpapers lGDPPC m_age HAQ BMI diabetes, replace sav
 
 
 *first stage
-reg lrd lpapers lGDPPC m_age HAQ BMI diabetes
+regress lrd lpapers lGDPPC m_age HAQ BMI diabetes
 outreg2 using "Results\first_stage.xls", replace
 *second stage
 ivregress 2sls lmortality lGDPPC m_age HAQ BMI diabetes (lrd = lpapers), robust

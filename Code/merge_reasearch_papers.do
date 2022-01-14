@@ -13,19 +13,19 @@ merge 1:1 Code using "Data\Derived\diabetes.dta", keep(match) nogenerate
 merge 1:1 Code using "Data\Derived\GDPPC.dta", keep(match) nogenerate
 merge 1:1 Code using "Data\Derived\mortality.dta", keep(match) nogenerate
 
-*Regression
-gen lGDPPC=log(GDPPC)
-*gen lrd=log(rd)
-gen lpapers=log(yr_papers)
-gen lmortality=log(mortality)
+*generate logs of variables
+generate lGDPPC=log(GDPPC)
+generate lpapers=log(yr_papers)
+generate lmortality=log(mortality)
 
-reg lmortality lpapers lGDPPC, robust
+*run regressions
+regress lmortality lpapers lGDPPC, robust
 outreg2 using "Results\papers.xls", replace
-reg lmortality lpapers lGDPPC m_age, robust
+regress lmortality lpapers lGDPPC m_age, robust
 outreg2 using "Results\papers.xls"
-reg lmortality lpapers lGDPPC m_age HAQ , robust
+regress lmortality lpapers lGDPPC m_age HAQ , robust
 outreg2 using "Results\papers.xls"
-reg lmortality lpapers lGDPPC m_age HAQ BMI, robust
+regress lmortality lpapers lGDPPC m_age HAQ BMI, robust
 outreg2 using "Results\papers.xls"
-reg lmortality lpapers lGDPPC m_age HAQ BMI diabetes, robust
+regress lmortality lpapers lGDPPC m_age HAQ BMI diabetes, robust
 outreg2 using "Results\r&d.xls"
