@@ -1,3 +1,9 @@
+
+clear
+
+* clean data
+do code/clean_data.do
+
 * regress on r&d
 do code/merge_r&d.do
 

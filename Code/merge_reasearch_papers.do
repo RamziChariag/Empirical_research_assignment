@@ -2,6 +2,8 @@ clear
 
 use  "Data\Derived\HAQ.dta"
 
+*Merge data
+
 merge 1:1 Code using "Data\Derived\BMI.dta", keep(match) nogenerate
 merge 1:1 Code using "Data\Derived\obesity.dta", keep(match) nogenerate
 merge 1:1 Code using "Data\Derived\m_age.dta", keep(match) nogenerate
